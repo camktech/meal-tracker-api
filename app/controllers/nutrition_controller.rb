@@ -6,11 +6,11 @@ class NutritionController < ApplicationController
   end
 
   def get_all_nutrients
-    render json: usda_get_all_nutrients()
+    render json: usda_get_all_nutrients
   end
 
   def get_all_food_groups
-    render json: usda_get_all_food_groups()
+    render json: usda_get_all_food_groups
   end
 
   def get_foods_by_nutrient

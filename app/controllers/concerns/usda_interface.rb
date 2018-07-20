@@ -3,8 +3,6 @@ module USDAInterface
   def usda_search_foods(query, include_brands, food_group_id)
     params = {q: query, fg: food_group_id}
     params = params.merge!({ds: 'Standard Reference'}) unless include_brands
-    puts include_brands
-    puts params
     usda_request('search', params)
   end
 
