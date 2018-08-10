@@ -1,9 +1,10 @@
 class MealComponent
   include Mongoid::Document
   field :name, type: String
-  field :quantity, type: Float
+  field :quantity, type: String
   field :unit, type: String
-  field :usda_item_id, type: Integer
-  belongs_to :meal
+  field :usda_item_id, type: String
+  embedded_in :meal
   embeds_many :nutrient_contents
+  accepts_nested_attributes_for :nutrient_contents, :autosave => true
 end

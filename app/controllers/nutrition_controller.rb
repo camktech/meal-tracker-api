@@ -18,6 +18,6 @@ class NutritionController < ApplicationController
   end
 
   def show_food_nutrients
-    render json: usda_show_food_nutrients(params[:ndbno], params[:nutrients])
+    render json: usda_show_food_nutrients(params[:ndbno_list], params[:nutrients])
   end
 end

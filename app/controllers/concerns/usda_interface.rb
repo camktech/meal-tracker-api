@@ -7,7 +7,7 @@ module USDAInterface
   end
 
   def usda_get_all_nutrients
-    usda_request('list', {lt: 'n'})
+    usda_request('list', {lt: 'n', max: 300})
   end
 
   def usda_get_all_food_groups
@@ -19,15 +19,20 @@ module USDAInterface
     usda_request('nutrients', params)
   end
 
-  def usda_show_food_nutrients(ndbno, nutrients)
+  def usda_show_food_nutrients(ndbno_list, nutrients)
     param_string = ""
     if nutrients
       nutrients.each do |n|
         param_string += "&nutrients=#{n}"
       end
     end
-    params = {ndbno: ndbno}
-    usda_request('nutrients', params, param_string)
+    reports = []
+    ndbno_list.each do |ndbno|
+      params = {ndbno: ndbno}      
+      reports << usda_request('nutrients', params, param_string)["report"]["foods"]
+    end
+    puts response
+    reports.flatten(1)
   end
 
   def usda_request(type, params, param_string = "")
